@@ -1,12 +1,12 @@
 export const colors = {
   base: {
-    gray_100: "#1B1D1E",
-    gray_200: "#333638",
-    gray_300: "#5C6265",
+    gray_700: "#1B1D1E",
+    gray_600: "#333638",
+    gray_500: "#5C6265",
     gray_400: "#B9BBBC",
-    gray_500: "#DDDEDF",
-    gray_600: "#EFF0F0",
-    gray_700: "#FAFAFA",
+    gray_300: "#DDDEDF",
+    gray_200: "#EFF0F0",
+    gray_100: "#FAFAFA",
 
     white: "#FFFFFF",
   },
