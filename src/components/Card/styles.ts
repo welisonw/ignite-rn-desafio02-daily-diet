@@ -17,6 +17,7 @@ export const Container = styled.View<CardBgColors>`
     if (bgColor === "red") return theme.colors.brand.red_light;
     else return theme.colors.base.gray_200;
   }};
+  margin-bottom: 40px;
 `;
 
 export const ContainerArrowUpRight = styled.TouchableOpacity`
