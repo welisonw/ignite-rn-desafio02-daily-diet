@@ -5,6 +5,7 @@ import { Button } from "@/components/Button";
 import { Texts } from "@/components/Texts";
 import { Meal } from "@/components/Meal";
 import { SectionList } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 
 export const Home = () => {
   const meals = [
@@ -38,6 +39,13 @@ export const Home = () => {
     },
   ];
 
+
+  const navigation = useNavigation();
+
+  function handleGoStatistics() {
+    navigation.navigate("statistics");
+  };
+
   return (
     <Container>
       <Header />
@@ -47,6 +55,8 @@ export const Home = () => {
         subtitle="das refeições dentro da dieta"
         bgColor="green"
         iconPosition="right"
+        style={{ marginBottom: 40 }}
+        onPress={handleGoStatistics}
       />
 
       <Texts>Refeições</Texts>
