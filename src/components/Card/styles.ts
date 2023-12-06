@@ -11,13 +11,13 @@ export const Container = styled.View<CardBgColors>`
   justify-content: center;
   height: 102px;
   border-radius: 8px;
+  padding: 16px;
   background-color: ${({ theme, bgColor }) => {
     if (bgColor === "gray") return theme.colors.base.gray_200;
     if (bgColor === "green") return theme.colors.brand.green_light;
     if (bgColor === "red") return theme.colors.brand.red_light;
     else return theme.colors.base.gray_200;
   }};
-  margin-bottom: 40px;
 `;
 
 export const ContainerArrowUpRight = styled.TouchableOpacity`
