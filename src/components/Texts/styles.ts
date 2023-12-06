@@ -2,6 +2,7 @@ import styled from "styled-components/native";
 import theme from "@/themes";
 
 export interface TextsStylesProps {
+  textAlign?: "left" | "center" | "justify" | "right";
   fontFamily?: keyof typeof theme.fonts.fontFamilys;
   fontSize?: keyof typeof theme.fonts.fontSizes; 
   color?: keyof typeof theme.colors.base | keyof typeof theme.colors.brand;
@@ -41,4 +42,6 @@ export const Container = styled.Text<TextsStylesProps>`
 
     else return theme.colors.base.gray_700;
   }};
+
+  text-align: ${({ textAlign }) => (textAlign ? textAlign : "left")};
 `;
