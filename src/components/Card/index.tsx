@@ -45,7 +45,7 @@ export const Card = ({
       <Texts fontSize="2xl" fontFamily="bold">
         {title}
       </Texts>
-      <Texts fontSize="sm" color="gray_600">
+      <Texts fontSize="sm" color="gray_600" textAlign="center">
         {subtitle}
       </Texts>
     </Container>
