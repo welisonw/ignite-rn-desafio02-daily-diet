@@ -11,7 +11,7 @@ import { ViewProps } from "react-native";
 
 interface CardProps extends CardBgColors, ButtonFloatProps, ViewProps {
   title: string;
-  subtitle: string;
+  subtitle?: string;
   showIconButton?: boolean;
   onPress?: () => void;
 }
