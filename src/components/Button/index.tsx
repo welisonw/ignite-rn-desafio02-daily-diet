@@ -1,11 +1,13 @@
-import { ButtonStylesProps, Container, IconPlus } from "./styles";
+import { ButtonStylesProps, Container } from "./styles";
 import { TouchableOpacityProps } from "react-native";
 import { Texts } from "@/components/Texts";
+import React from "react";
 
 interface ButtonProps extends ButtonStylesProps, TouchableOpacityProps {
-  activeOpacity: number;
+  activeOpacity?: number;
   onPress?: () => void;
-  icon?: boolean;
+  hasIcon?: boolean;
+  icon?: JSX.Element;
   text: string;
 };
 
@@ -13,7 +15,8 @@ export const Button = ({
   activeOpacity,
   onPress,
   bgColor,
-  icon = false,
+  hasIcon = false,
+  icon,
   text,
   ...props
 }: ButtonProps) => {
@@ -24,7 +27,7 @@ export const Button = ({
       bgColor={bgColor}
       {...props}
     >
-      {icon && <IconPlus />}
+      {hasIcon && icon}
       <Texts fontFamily="bold" fontSize="sm" color="white">
         {text}
       </Texts>

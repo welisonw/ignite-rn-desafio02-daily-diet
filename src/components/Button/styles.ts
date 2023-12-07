@@ -1,5 +1,4 @@
 import styled from "styled-components/native";
-import { Plus } from "phosphor-react-native";
 import theme from "@/themes";
 
 export interface ButtonStylesProps {
@@ -26,8 +25,3 @@ export const Container = styled.TouchableOpacity<ButtonStylesProps>`
     else return theme.colors.base.gray_700;
   }};
 `;
-
-export const IconPlus = styled(Plus).attrs(({ theme }) => ({
-  size: 18,
-  color: theme.colors.base.white,
-}))``;
