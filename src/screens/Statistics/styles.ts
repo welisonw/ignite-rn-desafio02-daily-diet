@@ -27,6 +27,6 @@ export const ContainerCards = styled.View`
 `;
 
 export const ContainerCardsInAndOutOfTheDiet = styled.View`
-flex-direction: row;
+  flex-direction: row;
   justify-content: space-between;
 `;
