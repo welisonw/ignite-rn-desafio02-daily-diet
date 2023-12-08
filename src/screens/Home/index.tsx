@@ -1,11 +1,13 @@
 import { Container } from "./styled";
+import { SectionList } from "react-native";
+import { useNavigation } from "@react-navigation/native";
+import { Plus } from "phosphor-react-native";
+import theme from "@/themes";
 import { Header } from "@/components/Header";
 import { Card } from "@/components/Card";
 import { Button } from "@/components/Button";
 import { Texts } from "@/components/Texts";
 import { Meal } from "@/components/Meal";
-import { SectionList } from "react-native";
-import { useNavigation } from "@react-navigation/native";
 
 export const Home = () => {
   const meals = [
@@ -39,11 +41,14 @@ export const Home = () => {
     },
   ];
 
-
   const navigation = useNavigation();
 
   function handleGoStatistics() {
     navigation.navigate("statistics");
+  };
+
+  function handleGoNewMeal() {
+    navigation.navigate("newmeal");
   };
 
   return (
@@ -60,7 +65,13 @@ export const Home = () => {
       />
 
       <Texts>Refeições</Texts>
-      <Button text="Nova refeição" activeOpacity={0.9} icon={true} />
+      <Button
+        text="Nova refeição"
+        activeOpacity={0.9}
+        hasIcon={true}
+        icon={<Plus size={18} color={theme.colors.base.gray_100} />}
+        onPress={handleGoNewMeal}
+      />
 
       <SectionList
         sections={meals}
