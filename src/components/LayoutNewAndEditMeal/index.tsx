@@ -34,7 +34,7 @@ export const LayoutNewAndEditMeal = ({ text }: LayoutNewAndEditMealProps) => {
   };
 
   function handleCreateNewMeal() {
-
+    navigation.navigate("feedback");
   };
 
   return (
