@@ -5,4 +5,9 @@ export interface MealDTO {
   date: string;
   hour: string;
   isOnTheDiet: boolean;
-}
+};
+
+export interface MealPlan {
+  date: string;
+  meals: Omit<MealDTO, "date">[];
+};
