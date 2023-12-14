@@ -1,45 +1,20 @@
+import { useCallback, useState } from "react";
+import { useFocusEffect, useNavigation } from "@react-navigation/native";
+import { Alert, SectionList } from "react-native";
+import { MealPlan } from "@/dtos/MealDTO";
+import { mealsGetAll } from "@/storage/meal/mealsGetAll";
 import { Container } from "./styled";
-import { SectionList } from "react-native";
-import { useNavigation } from "@react-navigation/native";
-import { Plus } from "phosphor-react-native";
 import theme from "@/themes";
+import { Plus } from "phosphor-react-native";
 import { Header } from "@/components/Header";
 import { Card } from "@/components/Card";
 import { Button } from "@/components/Button";
 import { Texts } from "@/components/Texts";
 import { Meal } from "@/components/Meal";
 
+
 export const Home = () => {
-  const meals = [
-    {
-      title: "12.08.2023",
-      data: [
-        {
-          id: "01",
-          hour: "20:00",
-          description: "X-tudo",
-          isOnTheDiet: false,
-        },
-        {
-          id: "02",
-          hour: "20:00",
-          description: "X-tudo",
-          isOnTheDiet: false,
-        },
-      ],
-    },
-    {
-      title: "11.08.2023",
-      data: [
-        {
-          id: "01",
-          hour: "20:00",
-          description: "Salada",
-          isOnTheDiet: true,
-        },
-      ],
-    },
-  ];
+  const [meals, setMeals] = useState<MealPlan[]>([]);
 
   const navigation = useNavigation();
 
@@ -51,14 +26,92 @@ export const Home = () => {
     navigation.navigate("newmeal");
   };
 
+  async function fetchMealPlans() {
+    try {
+      const mealDTOList = await mealsGetAll();
+
+      const mealPlansList = mealDTOList.reduce<MealPlan[]>((acc, cur) => {
+        const existingPlan = acc.find((plan) => plan.date === cur.date);
+
+        if (existingPlan) {
+          existingPlan.meals.push({
+            id: cur.id,
+            name: cur.name,
+            description: cur.description,
+            hour: cur.hour,
+            isOnTheDiet: cur.isOnTheDiet,
+          });
+
+          // Ordenar as refeições dentro de cada data por hora decrescente
+          existingPlan.meals.sort((a, b) => {
+            const timeA = a.hour.split(":").map(Number);
+            const timeB = b.hour.split(":").map(Number);
+
+            return timeB[0] * 60 + timeB[1] - (timeA[0] * 60 + timeA[1]);
+          });
+        } else {
+          acc.push({
+            date: cur.date,
+            meals: [
+              {
+                id: cur.id,
+                name: cur.name,
+                description: cur.description,
+                hour: cur.hour,
+                isOnTheDiet: cur.isOnTheDiet,
+              },
+            ],
+          });
+        };
+
+        return acc;
+      }, []);
+
+      // Ordenar os planos de refeições pela data
+      mealPlansList.sort((a, b) => {
+        const dateA = new Date(a.date);
+        const dateB = new Date(b.date);
+        return dateB.getTime() - dateA.getTime();
+      });
+
+      setMeals(mealPlansList);
+    } catch (error) {
+      Alert.alert("Erro ao carregar os planos de refeições");
+    };
+  };
+
+
+  // statistics
+  const amountOfMeals = meals.reduce((acc, cur) => {
+    return acc + cur.meals.length;
+  }, 0);
+
+  const amountOfMealsInDiet = meals.reduce((acc, cur) => {
+    return acc + cur.meals.filter((meal) => meal.isOnTheDiet).length;
+  }, 0);
+
+  const percentOfMealsInDiet =
+    amountOfMeals === 0
+      ? "--,--%"
+      : ((amountOfMealsInDiet * 100) / amountOfMeals)
+          .toFixed(2)
+          .split(".")
+          .join(",") + "%";
+
+  useFocusEffect(
+    useCallback(() => {
+      fetchMealPlans();
+    }, [])
+  );
+
   return (
     <Container>
       <Header />
 
       <Card
-        title="90,86%"
+        title={percentOfMealsInDiet}
         subtitle="das refeições dentro da dieta"
-        bgColor="green"
+        bgColor={percentOfMealsInDiet > "50" ? "green" : "red"}
         iconPosition="right"
         style={{ marginBottom: 40 }}
         onPress={handleGoStatistics}
@@ -74,7 +127,7 @@ export const Home = () => {
       />
 
       <SectionList
-        sections={meals}
+        sections={meals.map((meal) => ({ date: meal.date, data: meal.meals }))}
         keyExtractor={(item) => item.id}
         showsVerticalScrollIndicator={false}
         ListEmptyComponent={() => (
@@ -89,16 +142,18 @@ export const Home = () => {
             justifyContent: "center",
           }
         }
-        renderSectionHeader={({ section: { title } }) => (
+        renderSectionHeader={({ section }) => (
           <Texts
             fontFamily="bold"
             fontSize="lg"
             style={{ marginBottom: 8, marginTop: 32 }}
           >
-            {title}
+            {section.date}
           </Texts>
         )}
-        renderItem={({ item }) => <Meal {...item} onPress={() => ""} />}
+        renderItem={({ item }) => (
+          <Meal {...item} isOnTheDiet={item.isOnTheDiet} onPress={() => ""} />
+        )}
         style={{ marginBottom: 32 }}
       />
     </Container>
