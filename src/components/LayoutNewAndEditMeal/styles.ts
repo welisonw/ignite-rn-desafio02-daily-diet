@@ -32,14 +32,16 @@ export const Content = styled.View`
 `;
 
 export const ConteinerInputs = styled.View`
+  width: 100%;
   flex: 1;
 `;
 
-export const ContainerRow = styled.View`
+export const ContainerRow = styled.View `
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  width: 100%;
+  width: 47%;
+  gap: 20px;
 `;
 
 export const SelectedIsOnTheDiet = styled.TouchableOpacity.attrs<SelectedIsOnTheDietProps>(({ activeOpacity: 0.7 }))`
@@ -47,7 +49,7 @@ export const SelectedIsOnTheDiet = styled.TouchableOpacity.attrs<SelectedIsOnThe
   align-items: center;
   justify-content: center;
   gap: 8px;
-  width: 48%;
+  width: 49%;
   height: 50px;
   background-color: ${({ theme, isSelected, bgColor }) => {
     if (isSelected) {
