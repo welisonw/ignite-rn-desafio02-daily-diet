@@ -9,19 +9,19 @@ function dateMask(value: string): string {
   value = value.replace(regex, "$1/$2/$3");
 
   return value;
-}
+};
 
 function hourMask(value: string): string {
   // removes everything that is not a number
   value = value.replace(/\D/g, "");
 
-  // regex to format time in HH:mm format
+  // regex to format time in hh:mm format
   const regex = /^([0-1]?[0-9]|2[0-3])([0-5][0-9]$)/;
 
-  // Format for hour: HH:mm
+  // Format for hour: hh:mm
   value = value.replace(regex, "$1:$2");
 
   return value;
-}
+};
 
 export { dateMask, hourMask };
