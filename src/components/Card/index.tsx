@@ -10,7 +10,7 @@ import { Texts } from "@/components/Texts";
 import { ViewProps } from "react-native";
 
 interface CardProps extends CardBgColors, ButtonFloatProps, ViewProps {
-  title: string;
+  title: string | number;
   subtitle?: string;
   showIconButton?: boolean;
   onPress?: () => void;
