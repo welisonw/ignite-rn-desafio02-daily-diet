@@ -19,7 +19,7 @@ export const Home = () => {
   const navigation = useNavigation();
 
   function handleGoStatistics() {
-    navigation.navigate("statistics");
+    navigation.navigate("statistics", { meals });
   };
 
   function handleGoNewMeal() {
