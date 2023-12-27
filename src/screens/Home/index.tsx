@@ -12,7 +12,6 @@ import { Button } from "@/components/Button";
 import { Texts } from "@/components/Texts";
 import { Meal } from "@/components/Meal";
 
-
 export const Home = () => {
   const [meals, setMeals] = useState<MealPlan[]>([]);
 
@@ -24,6 +23,10 @@ export const Home = () => {
 
   function handleGoNewMeal() {
     navigation.navigate("newmeal");
+  };
+
+  function handleGoMeal(id: string) {
+    navigation.navigate("meal", { id });
   };
 
   async function fetchMealPlans() {
@@ -111,7 +114,13 @@ export const Home = () => {
       <Card
         title={percentOfMealsInDiet}
         subtitle="das refeições dentro da dieta"
-        bgColor={percentOfMealsInDiet > "50" ? "green" : "red"}
+        bgColor={
+          percentOfMealsInDiet === "--,--%"
+            ? "gray"
+            : percentOfMealsInDiet > "50"
+            ? "green"
+            : "red"
+        }
         iconPosition="right"
         style={{ marginBottom: 40 }}
         onPress={handleGoStatistics}
@@ -152,7 +161,7 @@ export const Home = () => {
           </Texts>
         )}
         renderItem={({ item }) => (
-          <Meal {...item} isOnTheDiet={item.isOnTheDiet} onPress={() => ""} />
+          <Meal {...item} isOnTheDiet={item.isOnTheDiet} onPress={() => handleGoMeal(item.id)} />
         )}
         style={{ marginBottom: 32 }}
       />
