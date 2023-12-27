@@ -60,12 +60,18 @@ export const Statistics = () => {
     }, 0);
 
   return (
-    <Container>
+    <Container percentOfMealsInDiet={percentOfMealsInDiet}>
       <Header>
         <Card
           title={percentOfMealsInDiet}
           subtitle="das refeições dentro da dieta"
-          bgColor={percentOfMealsInDiet > "50" ? "green" : "red"}
+          bgColor={
+            percentOfMealsInDiet === "--,--%"
+              ? "gray"
+              : percentOfMealsInDiet > "50"
+              ? "green"
+              : "red"
+          }
           onPress={handleGoHome}
         />
       </Header>

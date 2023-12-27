@@ -1,13 +1,15 @@
 import styled from "styled-components/native";
 
 interface ContainerStylesProps {
-  percentOfMealsInDiet?: string
+  percentOfMealsInDiet: string
 }
 
 export const Container = styled.View<ContainerStylesProps>`
   flex: 1;
   background-color: ${({ theme, percentOfMealsInDiet }) => {
-    return percentOfMealsInDiet && percentOfMealsInDiet > "50" 
+    return percentOfMealsInDiet === "--,--%"
+    ? theme.colors.base.gray_200
+    : percentOfMealsInDiet > "50" 
     ? theme.colors.brand.green_light 
     : theme.colors.brand.red_light
   }};
