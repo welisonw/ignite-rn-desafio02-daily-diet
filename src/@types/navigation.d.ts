@@ -7,6 +7,7 @@ export declare global {
       statistics: { meals: MealPlan[] };
       newmeal: undefined;
 			feedback: { isOnTheDiet: boolean };
+      meal: { id: string };
     };
   };
 };
