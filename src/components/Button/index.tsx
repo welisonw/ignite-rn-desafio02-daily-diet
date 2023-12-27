@@ -15,6 +15,7 @@ export const Button = ({
   activeOpacity,
   onPress,
   bgColor,
+  color = "gray_100",
   hasIcon = false,
   icon,
   text,
@@ -28,7 +29,7 @@ export const Button = ({
       {...props}
     >
       {hasIcon && icon}
-      <Texts fontFamily="bold" fontSize="sm" color="white">
+      <Texts fontFamily="bold" fontSize="sm" color={color}>
         {text}
       </Texts>
     </Container>
