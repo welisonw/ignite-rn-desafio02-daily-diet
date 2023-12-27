@@ -136,6 +136,7 @@ export const LayoutNewAndEditMeal = ({ text }: LayoutNewAndEditMealProps) => {
           <Input
             label="Descrição"
             multiline
+            maxLength={200}
             value={description}
             onChangeText={setDescription}
           />
