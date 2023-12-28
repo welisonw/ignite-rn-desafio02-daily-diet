@@ -68,7 +68,7 @@ export const Statistics = () => {
           bgColor={
             percentOfMealsInDiet === "--,--%"
               ? "gray"
-              : percentOfMealsInDiet > "50"
+              : percentOfMealsInDiet > "50" || percentOfMealsInDiet === "100,00%"
               ? "green"
               : "red"
           }

@@ -117,7 +117,7 @@ export const Home = () => {
         bgColor={
           percentOfMealsInDiet === "--,--%"
             ? "gray"
-            : percentOfMealsInDiet > "50"
+            : percentOfMealsInDiet > "50" || percentOfMealsInDiet === "100,00%"
             ? "green"
             : "red"
         }

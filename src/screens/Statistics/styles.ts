@@ -9,7 +9,7 @@ export const Container = styled.View<ContainerStylesProps>`
   background-color: ${({ theme, percentOfMealsInDiet }) => {
     return percentOfMealsInDiet === "--,--%"
     ? theme.colors.base.gray_200
-    : percentOfMealsInDiet > "50" 
+    : percentOfMealsInDiet > "50" || percentOfMealsInDiet === "100,00%"
     ? theme.colors.brand.green_light 
     : theme.colors.brand.red_light
   }};
