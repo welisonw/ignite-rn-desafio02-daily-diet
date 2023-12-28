@@ -20,7 +20,7 @@ import {
 } from "./styles";
 import theme from "@/themes";
 import { ArrowLeft } from "phosphor-react-native";
-import { Input } from "@/components/LayoutNewAndEditMeal/Input";
+import { Input } from "@/components/Input";
 import { Texts } from "@/components/Texts";
 import { Button } from "@/components/Button";
 
