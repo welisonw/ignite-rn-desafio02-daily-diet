@@ -53,6 +53,10 @@ export const Meal = () => {
     }
   }
 
+  function handleEditMeal() {
+    navigation.navigate("editmeal", { id });
+  }
+
   useFocusEffect(
     useCallback(() => {
       fetchMeal();
@@ -105,7 +109,7 @@ export const Meal = () => {
             activeOpacity={0.9}
             hasIcon={true}
             icon={<PencilLine size={18} color={theme.colors.base.gray_100} />}
-            onPress={() => "ass"}
+            onPress={handleEditMeal}
           />
           <Button
             bgColor="gray_100"
