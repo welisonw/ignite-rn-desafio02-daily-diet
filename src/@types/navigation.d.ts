@@ -8,6 +8,7 @@ export declare global {
       newmeal: undefined;
 			feedback: { isOnTheDiet: boolean };
       meal: { id: string };
+      editmeal: { id: string };
     };
   };
 };
