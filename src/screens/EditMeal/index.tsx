@@ -6,7 +6,7 @@ import {
 } from "@react-navigation/native";
 import { mealsGetAll } from "@/storage/meal/mealsGetAll";
 import { mealUpdate } from "@/storage/meal/mealUpdate";
-import { Alert } from "react-native";
+import { Alert, Keyboard, TouchableWithoutFeedback } from "react-native";
 import { format } from "date-fns";
 import {
   Container,
@@ -146,77 +146,79 @@ export const EditMeal = () => {
   );
 
   return (
-    <Container>
-      <Header>
-        <ContainerIconBack onPress={handleGoHome}>
-          <ArrowLeft size={24} color={theme.colors.base.gray_600} />
-        </ContainerIconBack>
+    <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
+      <Container>
+        <Header>
+          <ContainerIconBack onPress={handleGoHome}>
+            <ArrowLeft size={24} color={theme.colors.base.gray_600} />
+          </ContainerIconBack>
 
-        <Texts fontFamily="bold" fontSize="lg" textAlign="center">
-          Editar refeição
-        </Texts>
-
-        <Texts style={{ width: "15%" }}></Texts>
-      </Header>
-
-      <Content>
-        <ConteinerInputs>
-          <Input label="Nome" value={name} onChangeText={setName} />
-
-          <Input
-            label="Descrição"
-            multiline
-            maxLength={200}
-            value={description}
-            onChangeText={setDescription}
-          />
-
-          <ContainerRow>
-            <Input
-              label="Data"
-              keyboardType="numeric"
-              value={date}
-              onChangeText={formatDate}
-            />
-
-            <Input
-              label="Hora"
-              keyboardType="numeric"
-              value={hour}
-              onChangeText={formatHour}
-            />
-          </ContainerRow>
-
-          <Texts fontFamily="bold" fontSize="sm" color="gray_600">
-            Está dentro da dieta?
+          <Texts fontFamily="bold" fontSize="lg" textAlign="center">
+            Editar refeição
           </Texts>
-          <ContainerRow style={{ width: "100%", gap: 0 }}>
-            <SelectedIsOnTheDiet
-              bgColor="green"
-              onPress={() => setIsOnTheDiet(true)}
-              isSelected={isOnTheDiet}
-            >
-              <StatusIsOnTheDiet bgColor="green" />
-              <Texts fontFamily="bold" fontSize="sm">
-                Sim
-              </Texts>
-            </SelectedIsOnTheDiet>
 
-            <SelectedIsOnTheDiet
-              bgColor="red"
-              onPress={() => setIsOnTheDiet(false)}
-              isSelected={!isOnTheDiet}
-            >
-              <StatusIsOnTheDiet bgColor="red" />
-              <Texts fontFamily="bold" fontSize="sm">
-                Não
-              </Texts>
-            </SelectedIsOnTheDiet>
-          </ContainerRow>
-        </ConteinerInputs>
+          <Texts style={{ width: "15%" }}></Texts>
+        </Header>
 
-        <Button text="Salvar alterações" onPress={handleEditMeal} />
-      </Content>
-    </Container>
+        <Content>
+          <ConteinerInputs>
+            <Input label="Nome" value={name} onChangeText={setName} />
+
+            <Input
+              label="Descrição"
+              multiline
+              maxLength={200}
+              value={description}
+              onChangeText={setDescription}
+            />
+
+            <ContainerRow>
+              <Input
+                label="Data"
+                keyboardType="numeric"
+                value={date}
+                onChangeText={formatDate}
+              />
+
+              <Input
+                label="Hora"
+                keyboardType="numeric"
+                value={hour}
+                onChangeText={formatHour}
+              />
+            </ContainerRow>
+
+            <Texts fontFamily="bold" fontSize="sm" color="gray_600">
+              Está dentro da dieta?
+            </Texts>
+            <ContainerRow style={{ width: "100%", gap: 0 }}>
+              <SelectedIsOnTheDiet
+                bgColor="green"
+                onPress={() => setIsOnTheDiet(true)}
+                isSelected={isOnTheDiet}
+              >
+                <StatusIsOnTheDiet bgColor="green" />
+                <Texts fontFamily="bold" fontSize="sm">
+                  Sim
+                </Texts>
+              </SelectedIsOnTheDiet>
+
+              <SelectedIsOnTheDiet
+                bgColor="red"
+                onPress={() => setIsOnTheDiet(false)}
+                isSelected={!isOnTheDiet}
+              >
+                <StatusIsOnTheDiet bgColor="red" />
+                <Texts fontFamily="bold" fontSize="sm">
+                  Não
+                </Texts>
+              </SelectedIsOnTheDiet>
+            </ContainerRow>
+          </ConteinerInputs>
+
+          <Button text="Salvar alterações" onPress={handleEditMeal} />
+        </Content>
+      </Container>
+    </TouchableWithoutFeedback>
   );
 };
