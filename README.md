@@ -7,6 +7,9 @@
 
 Daily Diet é uma aplicação mobile para controle da sua dieta. Nele você pode registrar suas refeições, acompanhar como está seu progresso e garantir que  esteja no caminho certo para alcançar seus objetivos de uma alimentação saudável.
 
+## 🎨 Layout da aplicação
+Você pode visualizar o layout do projeto no Figma [aqui](https://www.figma.com/file/laFn3FnTINQXltdskpJx50/Daily-Diet-%E2%80%A2-Desafio-React-Native-(Community)?type=design&mode=design&t=TIGriwPC506fucwk-0).
+
 ## ⚙️ Funcionalidades
 - Adicionar uma nova refeição
 - Editar uma refeição
